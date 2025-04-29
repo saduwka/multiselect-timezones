@@ -11,16 +11,24 @@ class App extends Component {
     fetch('https://timeapi.io/api/timezone/availabletimezones')
       .then((response) => response.json())
       .then((data) => {
+        console.log("Received timezones:", data); // Логируем полученные данные
         const options = data.map((timezone) => ({
           label: timezone,
           value: timezone,
         }));
-        this.setState({ options });
+        this.setState({ options }, () => {
+          console.log("Updated options:", this.state.options); // Логируем обновлённые опции
+        });
+      })
+      .catch((error) => {
+        console.error("Error fetching timezones:", error); // Логируем ошибки
       });
   }
 
   handleSelectionChange = (newSelectedOptions) => {
-    this.setState({ selectedOptions: newSelectedOptions });
+    this.setState({ selectedOptions: newSelectedOptions }, () => {
+      console.log("Updated selected options:", this.state.selectedOptions); // Логируем выбранные опции
+    });
   };
 
   render() {
