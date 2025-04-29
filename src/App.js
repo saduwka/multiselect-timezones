@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import Multiselect from './Multiselect';
+import Multiselect from './components/Multiselect';
 
 class App extends Component {
   state = {
